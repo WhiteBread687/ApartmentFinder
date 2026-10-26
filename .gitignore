@@ -6,6 +6,12 @@ __pycache__/
 # C extensions
 *.so
 
+# React dependencies and build output
+node_modules/
+dist/
+build/
+
+
 # Distribution / packaging
 .Python
 build/
@@ -76,6 +82,10 @@ docs/_build/
 .pybuilder/
 target/
 
+# Operating system files
+.DS_Store
+Thumbs.db
+
 # Jupyter Notebook
 .ipynb_checkpoints
 
@@ -121,7 +131,7 @@ ipython_config.py
 # pixi
 #   Similar to Pipfile.lock, it is generally recommended to include pixi.lock in version control.
 # pixi.lock
-#   Pixi creates a virtual environment in the .pixi directory, just like venv module creates one
+#   Pixi creates a virtual ironment in the .pixi directory, just like v module creates one
 #   in the .venv directory. It is recommended not to include this directory in version control.
 .pixi/*
 !.pixi/config.toml
