@@ -1,0 +1,125 @@
+[
+  {
+    "unit_id": 1,
+    "unit_number": "A1",
+    "monthly_rent": 1250,
+    "beds": 2,
+    "baths": 1,
+    "square_feet": 850,
+    "date_available": "2026-11-01",
+    "property": {
+      "property_id": 1,
+      "address": "123 Example Street",
+      "city": "Moscow",
+      "state": "ID",
+      "zip": "83843",
+      "housing_type": {
+        "type_id": 1,
+        "type_name": "Apartment"
+      }
+    },
+    "amenities": [
+      {
+        "amenity_id": 2,
+        "amenity_name": "Shared on-site laundry",
+        "amenity_group": "Laundry"
+      },
+      {
+        "amenity_id": 3,
+        "amenity_name": "Dishwasher",
+        "amenity_group": "Kitchen"
+      }
+    ]
+  },
+  {
+    "unit_id": 2,
+    "unit_number": "A2",
+    "monthly_rent": 1300,
+    "beds": 3,
+    "baths": 1,
+    "square_feet": 900,
+    "date_available": "2026-11-01",
+    "property": {
+      "property_id": 1,
+      "address": "123 Example Street",
+      "city": "Moscow",
+      "state": "ID",
+      "zip": "83843",
+      "housing_type": {
+        "type_id": 1,
+        "type_name": "Apartment"
+      }
+    },
+    "amenities": [
+      {
+        "amenity_id": 1,
+        "amenity_name": "In-unit laundry",
+        "amenity_group": "Laundry"
+      },
+      {
+        "amenity_id": 3,
+        "amenity_name": "Dishwasher",
+        "amenity_group": "Kitchen"
+      }
+    ]
+  },
+  {
+    "unit_id": 3,
+    "unit_number": "A3",
+    "monthly_rent": 1380,
+    "beds": 2,
+    "baths": 1,
+    "square_feet": 750,
+    "date_available": "2026-11-01",
+    "property": {
+      "property_id": 1,
+      "address": "123 Example Street",
+      "city": "Moscow",
+      "state": "ID",
+      "zip": "83843",
+      "housing_type": {
+        "type_id": 1,
+        "type_name": "Apartment"
+      }
+    },
+    "amenities": [
+      {
+        "amenity_id": 2,
+        "amenity_name": "Shared on-site laundry",
+        "amenity_group": "Laundry"
+      },
+      {
+        "amenity_id": 3,
+        "amenity_name": "Dishwasher",
+        "amenity_group": "Kitchen"
+      }
+    ]
+  },
+  {
+    "unit_id": 4,
+    "unit_number": "A4",
+    "monthly_rent": 1100,
+    "beds": 1,
+    "baths": 1,
+    "square_feet": 600,
+    "date_available": "2026-11-01",
+    "property": {
+      "property_id": 1,
+      "address": "123 Example Street",
+      "city": "Moscow",
+      "state": "ID",
+      "zip": "83843",
+      "housing_type": {
+        "type_id": 1,
+        "type_name": "Apartment"
+      }
+    },
+    "amenities": [
+      {
+        "amenity_id": 1,
+        "amenity_name": "In-unit laundry",
+        "amenity_group": "Laundry"
+      }
+    ]
+  }
+]

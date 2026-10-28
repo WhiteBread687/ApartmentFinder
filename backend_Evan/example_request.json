@@ -1,0 +1,21 @@
+{
+  "filters": {
+    "city": "Moscow",
+    "state": "ID",
+    "max_rent": 1200,
+    "min_beds": 2,
+    "min_square_feet": 800,
+    "amenity_ids": [
+      1,
+      3
+    ]
+  },
+  "relaxation": {
+    "enabled": true,
+    "rent_overage": 200,
+    "square_feet_shortfall": 100,
+    "allow_related_housing_types": false,
+    "allow_related_amenities": true
+  },
+  "limit": 10
+}

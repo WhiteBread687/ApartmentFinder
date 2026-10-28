@@ -1,0 +1,11 @@
+{
+  "amenities": {
+    "1": "laundry-on-property",
+    "2": "laundry-on-property",
+    "3": "dishwashing"
+  },
+  "housing_types": {
+    "1": "multi-unit",
+    "2": "multi-unit"
+  }
+}
