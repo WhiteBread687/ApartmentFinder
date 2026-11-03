@@ -6,18 +6,12 @@ function App() {
   const [state, setState] = useState('ID')
   const [zip, setZip] = useState('')
   const [housingTypeId, setHousingTypeId] = useState('')
-  const [maxRent, setMaxRent] = useState('1200')
+  const [maxRent, setMaxRent] = useState('1300')
   const [minBeds, setMinBeds] = useState('2')
   const [minBaths, setMinBaths] = useState('')
   const [minSqft, setMinSqft] = useState('800')
   const [availableBy, setAvailableBy] = useState('')
-  const [amenityIds, setAmenityIds] = useState([1, 3])
-
-  const [relaxEnabled, setRelaxEnabled] = useState(true)
-  const [rentOverage, setRentOverage] = useState('200')
-  const [sqftShortfall, setSqftShortfall] = useState('100')
-  const [allowRelatedHousing, setAllowRelatedHousing] = useState(false)
-  const [allowRelatedAmenities, setAllowRelatedAmenities] = useState(true)
+  const [amenityIds, setAmenityIds] = useState([])
 
   const [data, setData] = useState(null)
   const [error, setError] = useState('')
@@ -50,11 +44,11 @@ function App() {
     }
 
     const relaxation = {
-      enabled: relaxEnabled,
-      rent_overage: rentOverage !== '' ? Number(rentOverage) : 0,
-      square_feet_shortfall: sqftShortfall !== '' ? Number(sqftShortfall) : 0,
-      allow_related_housing_types: allowRelatedHousing,
-      allow_related_amenities: allowRelatedAmenities
+      enabled: false,
+      rent_overage: 0,
+      square_feet_shortfall: 0,
+      allow_related_housing_types: false,
+      allow_related_amenities: false
     }
 
     try {
@@ -84,7 +78,7 @@ function App() {
 
       <form onSubmit={handleSearch}>
         <div className="section">
-          <h3>Apartment Filters</h3>
+          <h3>Apartment Search</h3>
           <div className="grid">
             <div className="field">
               <label>City</label>
@@ -145,35 +139,6 @@ function App() {
           </div>
         </div>
 
-        <div className="section">
-          <h3>Query Relaxation (SmartBase / TAH)</h3>
-          <div className="checkbox-row" style={{ marginBottom: '12px' }}>
-            <label>
-              <input type="checkbox" checked={relaxEnabled} onChange={e => setRelaxEnabled(e.target.checked)} />
-              <b>Enable Query Relaxation</b>
-            </label>
-            <label>
-              <input type="checkbox" checked={allowRelatedHousing} onChange={e => setAllowRelatedHousing(e.target.checked)} />
-              Allow Related Housing Types (TAH)
-            </label>
-            <label>
-              <input type="checkbox" checked={allowRelatedAmenities} onChange={e => setAllowRelatedAmenities(e.target.checked)} />
-              Allow Related Amenities (TAH)
-            </label>
-          </div>
-
-          <div className="grid">
-            <div className="field">
-              <label>Allowed Rent Overage ($)</label>
-              <input type="number" value={rentOverage} onChange={e => setRentOverage(e.target.value)} />
-            </div>
-            <div className="field">
-              <label>Allowed SqFt Shortfall</label>
-              <input type="number" value={sqftShortfall} onChange={e => setSqftShortfall(e.target.value)} />
-            </div>
-          </div>
-        </div>
-
         <div className="buttons">
           <button type="submit" disabled={loading}>
             {loading ? 'Searching...' : 'Search Apartments'}
@@ -186,19 +151,14 @@ function App() {
       {data && (
         <div>
           <div className="summary-box">
-            <b>{data.summary.message}</b> — Returned: {data.summary.returned_count} (Exact: {data.summary.exact_count}, Relaxed: {data.summary.approximate_count})
+            <b>Search Results</b> — Exact matches found: {data.summary.exact_count}
           </div>
 
           {data.results.map(unit => (
             <div key={unit.unit_id} className="unit-card">
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <h3>
-                  {unit.property.address} - Unit {unit.unit_number} ({unit.property.housing_type.type_name})
-                </h3>
-                <span className={unit.match.is_exact ? 'badge-exact' : 'badge-relaxed'}>
-                  {unit.match.is_exact ? 'Exact Match' : `Relaxed Match (Distance: ${unit.match.distance_score})`}
-                </span>
-              </div>
+              <h3>
+                {unit.property.address} - Unit {unit.unit_number} ({unit.property.housing_type.type_name})
+              </h3>
 
               <p>
                 <b>Location:</b> {unit.property.city}, {unit.property.state} {unit.property.zip} |{' '}
@@ -213,19 +173,12 @@ function App() {
                   ? unit.amenities.map(a => a.amenity_name).join(', ')
                   : 'None'}
               </p>
-
-              {!unit.match.is_exact && unit.match.relaxations.length > 0 && (
-                <div className="relaxation-list">
-                  <b>Relaxed Criteria:</b>
-                  <ul>
-                    {unit.match.relaxations.map((rel, idx) => (
-                      <li key={idx}>{rel.explanation}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
             </div>
           ))}
+
+          {data.results.length === 0 && (
+            <p>No exact matches found for this criteria.</p>
+          )}
         </div>
       )}
     </div>
